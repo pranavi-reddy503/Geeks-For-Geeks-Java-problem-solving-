@@ -51,17 +51,26 @@ class GFG {
 class Solution {
 
     public int peakElement(int[] arr) {
-        int n=arr.length;
-        int peak=0;
-        for(int i=1;i<n;i++){
-            if(arr[i]>arr[i-1]){
-                peak=i;
+        int n = arr.length;
+
+        // Edge case: only one element
+        if (n == 1) return 0;
+
+        // Check if first element is a peak
+        if (arr[0] > arr[1]) return 0;
+
+        // Check if last element is a peak
+        if (arr[n - 1] > arr[n - 2]) return n - 1;
+
+        // Check for peak in the middle of the array
+        for (int i = 1; i < n - 1; i++) {
+            if (arr[i] > arr[i - 1] && arr[i] > arr[i + 1]) {
+                return i;
             }
         }
-            return peak;
-        }
-        // code here
+
+        // Just in case (though constraints guarantee at least one peak)
+        return -1;
     }
-  
-    
+}
 
